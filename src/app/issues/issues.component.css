@@ -1,0 +1,43 @@
+.clickable {
+  cursor: pointer;
+}
+.label {
+  margin-left: .2rem;
+  margin-right: .2rem;
+  padding: .15rem;
+  border-radius: .4rem;
+  display: inline-block;
+  font-size: .8rem;
+}
+.no-round-border {
+  border-radius: 0%;
+}
+.issue-item {
+  padding: 0.35rem 1.25rem;
+}
+.issue-item:hover {
+  background-color: #f6f8fa;
+}
+.issues-header {
+  background-color: #f6f8fa;
+}
+.open-issue {
+  font-size: 14px;
+}
+.issue-title {
+  font-size: 16px;
+  text-decoration: none;
+}
+.issue-title:hover {
+  color: rgb(140, 140, 243) !important;
+}
+.issue-subtitle {
+  font-size: 12px;
+  color: #586069;
+}
+.dropdown-menu {
+  padding: 0;
+}
+.dropdown-menu button {
+  border-bottom: 1px solid #eaecef;
+}

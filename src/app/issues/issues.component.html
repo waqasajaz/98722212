@@ -1,0 +1,67 @@
+<h2>Angular/Angular.js</h2>
+<div class="row">
+  <div class="col">
+    <div class="row">
+      <div class="col-6">
+          <div class="input-group mb-3">
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-secondary no-round-border" id="dropdownBasic1" ngbDropdownToggle>Filters</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item">Title</button>
+                <button class="dropdown-item">User</button>
+                <button class="dropdown-item">State</button>
+              </div>
+            </div>
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <fa name="search"></fa>
+              </span>
+            </div>
+            <input type="text" class="form-control" placeholder="..." aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <ul class="list-group">
+      <li class="list-group-item issues-header">
+        <div class="float-left">
+          <fa name="exclamation-circle" class="text-warning"></fa>
+          <span class="font-weight-bold open-issue">{{issues.length}} open</span>
+        </div>
+        <div class="float-right">
+          <div ngbDropdown class="d-inline-block" placement="bottom-right">
+            <span class="clickable" id="dropdownBasic1" ngbDropdownToggle>Sort</span>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item">Newest</button>
+              <button class="dropdown-item">Oldest</button>
+              <button class="dropdown-item">Most Commented</button>
+              <button class="dropdown-item">Least Commented</button>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item issue-item" *ngFor="let issue of issues">
+        <div>
+          <div class="float-left col-9 pl-0">
+            <fa name="exclamation-circle" class="text-warning"></fa>
+            <a routerLink="/issues/{{issue.id}}" class="text-dark issue-title font-weight-bold">
+              {{issue.title}}
+            </a>
+            <span class="label" [ngStyle]="this.getColor(label.color)" *ngFor="let label of issue.labels">{{label.name}}</span>
+            <br>
+            <div class="text-small">
+                <span class="issue-subtitle">#{{issue.number}} opened on {{issue.created_at}} by {{issue.user.login}}</span>
+              </div>
+          </div>
+          <div class="float-right col-2 align-text-top text-right">
+            <fa name="comments"></fa>
+            <span>{{issue.comments}}</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
