@@ -14,6 +14,7 @@ import { IssueService } from '../issue.service';
 export class IssueDetailsComponent implements OnInit {
 
   issue: any;
+  comments: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -22,13 +23,17 @@ export class IssueDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getHero();
+    this.getComments();
   }
 
-  getHero(): void {
+  getComments(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.issueService.getIssue(id)
-      .subscribe(issue => this.issue = issue);
+      .subscribe(issue => {
+        this.issue = issue;
+        this.issueService.getComments(issue.comments_url)
+          .subscribe(comments => this.comments = comments);
+      });
   }
 
   goBack(): void {

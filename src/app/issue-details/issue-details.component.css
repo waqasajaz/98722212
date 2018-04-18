@@ -1,0 +1,17 @@
+li.comment {
+  padding: 0;
+}
+.comment-header {
+  padding: .2rem;
+  color: #586069;
+  background-color: #f6f8fa;
+}
+.comment-header span {
+  font-size: 14px;
+}
+.comment-body {
+  padding: .2rem;
+}
+.comment-body pre {
+  white-space: pre-wrap;
+}

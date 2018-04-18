@@ -27,6 +27,14 @@ export class IssueService {
       );
   }
 
+  getComments(commentsURL): Observable<any[]> {
+    return this.http.get<any[]>(commentsURL)
+      .pipe(
+        tap(issues => this.log(`comments fetched`)),
+        catchError(this.handleError('getComments', []))
+      );
+  }
+
   getIssue(id: number): Observable<any> {
     let result = this.issues.filter(issue => issue.id === id);
     result = (result && result.length) ? result[0] : null;

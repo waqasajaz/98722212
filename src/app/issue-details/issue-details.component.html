@@ -1,4 +1,15 @@
+<button (click)="goBack()">go back</button>
 <div *ngIf="issue">
   <h2>{{ issue.title | uppercase }}</h2>
-  <button (click)="goBack()">go back</button>
+  <ul class="list-group">
+    <li class="list-group-item comment" *ngFor="let comment of comments">
+      <div class="comment-header">
+        <span><strong>{{comment.user.login}}</strong> commented on {{comment.created_at | date}}</span>
+      </div>
+      <div class="comment-body">
+        <pre>{{comment.body}}</pre>
+      </div>
+    </li>
+  </ul>
+
 </div>
