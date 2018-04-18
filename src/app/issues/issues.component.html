@@ -5,11 +5,11 @@
       <div class="col-6">
           <div class="input-group mb-3">
             <div ngbDropdown class="d-inline-block">
-              <button class="btn btn-secondary no-round-border" id="dropdownBasic1" ngbDropdownToggle>Filters</button>
+              <button class="btn btn-secondary no-round-border" id="dropdownBasic1" ngbDropdownToggle>{{filter || 'Filters'}}</button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button class="dropdown-item">Title</button>
-                <button class="dropdown-item">User</button>
-                <button class="dropdown-item">State</button>
+                <button class="dropdown-item" (click)="setFilter('title')">Title</button>
+                <button class="dropdown-item" (click)="setFilter('user')">User</button>
+                <button class="dropdown-item" (click)="setFilter('state')">State</button>
               </div>
             </div>
             <div class="input-group-prepend">
@@ -17,7 +17,10 @@
                 <fa name="search"></fa>
               </span>
             </div>
-            <input type="text" class="form-control" placeholder="..." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" placeholder="Type here..." aria-label="Username" aria-describedby="basic-addon1"
+              #searchBox
+              (keyup)="applyFilter(searchBox.value)"
+            >
           </div>
       </div>
     </div>
@@ -35,10 +38,10 @@
           <div ngbDropdown class="d-inline-block" placement="bottom-right">
             <span class="clickable" id="dropdownBasic1" ngbDropdownToggle>Sort</span>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <button class="dropdown-item">Newest</button>
-              <button class="dropdown-item">Oldest</button>
-              <button class="dropdown-item">Most Commented</button>
-              <button class="dropdown-item">Least Commented</button>
+              <button class="dropdown-item" (click)="applySort('newest')"><fa *ngIf="sortBy === 'newest'" name="check"></fa> Newest</button>
+              <button class="dropdown-item" (click)="applySort('oldest')"><fa *ngIf="sortBy === 'oldest'" name="check"></fa> Oldest</button>
+              <button class="dropdown-item" (click)="applySort('most-com')"><fa *ngIf="sortBy === 'most-com'" name="check"></fa> Most Commented</button>
+              <button class="dropdown-item" (click)="applySort('least-com')"><fa *ngIf="sortBy === 'least-com'" name="check"></fa> Least Commented</button>
             </div>
           </div>
         </div>
@@ -53,8 +56,8 @@
             <span class="label" [ngStyle]="this.getColor(label.color)" *ngFor="let label of issue.labels">{{label.name}}</span>
             <br>
             <div class="text-small">
-                <span class="issue-subtitle">#{{issue.number}} opened on {{issue.created_at}} by {{issue.user.login}}</span>
-              </div>
+              <span class="issue-subtitle">#{{issue.number}} opened on {{issue.created_at | date}} by {{issue.user.login}}</span>
+            </div>
           </div>
           <div class="float-right col-2 align-text-top text-right">
             <fa name="comments"></fa>
